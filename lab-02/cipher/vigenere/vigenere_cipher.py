@@ -3,6 +3,9 @@ class VigenereCipher:
         pass
 
     def vigenere_encrypt(self, plain_text, key):
+        if not key or not key.isalpha():
+            raise ValueError("Key must contain only alphabetic characters and cannot be empty.")
+            
         encrypted_text = ""
         key_index = 0
         for char in plain_text:
@@ -18,6 +21,9 @@ class VigenereCipher:
         return encrypted_text
 
     def vigenere_decrypt(self, encrypted_text, key):
+        if not key or not key.isalpha():
+            raise ValueError("Key must contain only alphabetic characters and cannot be empty.")
+
         decrypted_text = ""
         key_index = 0
         for char in encrypted_text:

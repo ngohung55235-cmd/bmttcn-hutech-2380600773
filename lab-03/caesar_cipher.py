@@ -23,6 +23,10 @@ class MyApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key must be an integer.")
             return
 
+        if not (1 <= key <= 25):
+            QMessageBox.warning(self, "Validation Error", "Key must be an integer between 1 and 25.")
+            return
+
         plain_text = self.ui.txt_plain_text.toPlainText()
         if not plain_text:
             QMessageBox.warning(self, "Validation Error", "Plain text field cannot be empty.")
@@ -59,6 +63,10 @@ class MyApp(QMainWindow):
             key = int(key_text)
         except ValueError:
             QMessageBox.warning(self, "Validation Error", "Key must be an integer.")
+            return
+
+        if not (1 <= key <= 25):
+            QMessageBox.warning(self, "Validation Error", "Key must be an integer between 1 and 25.")
             return
 
         cipher_text = self.ui.txt_cipher_text.toPlainText()

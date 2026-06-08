@@ -3,6 +3,13 @@ class RailFenceCipher:
         pass
 
     def rail_fence_encrypt(self, plain_text, num_rails):
+        if len(plain_text) < 2:
+            raise ValueError("Text length must be at least 2 to use Rail Fence cipher.")
+        if num_rails < 2:
+            raise ValueError("Key (number of rails) must be at least 2.")
+        if num_rails >= len(plain_text):
+            raise ValueError("Key (number of rails) must be less than the text length.")
+
         rails = [[] for _ in range(num_rails)]
         rail_index = 0
         direction = 1  # 1: down, -1: up
@@ -17,6 +24,13 @@ class RailFenceCipher:
         return cipher_text
     
     def rail_fence_decrypt(self, cipher_text, num_rails):
+        if len(cipher_text) < 2:
+            raise ValueError("Text length must be at least 2 to use Rail Fence cipher.")
+        if num_rails < 2:
+            raise ValueError("Key (number of rails) must be at least 2.")
+        if num_rails >= len(cipher_text):
+            raise ValueError("Key (number of rails) must be less than the text length.")
+
         rail_lengths = [0] * num_rails
         rail_index = 0
         direction = 1

@@ -6,22 +6,32 @@ class CaesarCipher:
 
     def encrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
+        if not (1 <= key <= alphabet_len - 1):
+            raise ValueError(f"Key must be between 1 and {alphabet_len - 1}")
         text = text.upper()
         encrypted_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index + key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            encrypted_text.append(output_letter)
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index + key) % alphabet_len
+                output_letter = self.alphabet[output_index]
+                encrypted_text.append(output_letter)
+            else:
+                encrypted_text.append(letter)
         return "".join(encrypted_text)
 
     def decrypt_text(self, text: str, key: int) -> str:
         alphabet_len = len(self.alphabet)
+        if not (1 <= key <= alphabet_len - 1):
+            raise ValueError(f"Key must be between 1 and {alphabet_len - 1}")
         text = text.upper()
         decrypted_text = []
         for letter in text:
-            letter_index = self.alphabet.index(letter)
-            output_index = (letter_index - key) % alphabet_len
-            output_letter = self.alphabet[output_index]
-            decrypted_text.append(output_letter)
+            if letter in self.alphabet:
+                letter_index = self.alphabet.index(letter)
+                output_index = (letter_index - key) % alphabet_len
+                output_letter = self.alphabet[output_index]
+                decrypted_text.append(output_letter)
+            else:
+                decrypted_text.append(letter)
         return "".join(decrypted_text)

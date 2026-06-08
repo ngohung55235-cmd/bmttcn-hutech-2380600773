@@ -17,6 +17,10 @@ class VigenereApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key field cannot be empty.")
             return
 
+        if not key_text.isalpha():
+            QMessageBox.warning(self, "Validation Error", "Key must contain only alphabetic characters.")
+            return
+
         plain_text = self.ui.txt_plain_text.toPlainText()
         if not plain_text:
             QMessageBox.warning(self, "Validation Error", "Plain text field cannot be empty.")
@@ -47,6 +51,10 @@ class VigenereApp(QMainWindow):
         key_text = self.ui.txt_key.text().strip()
         if not key_text:
             QMessageBox.warning(self, "Validation Error", "Key field cannot be empty.")
+            return
+
+        if not key_text.isalpha():
+            QMessageBox.warning(self, "Validation Error", "Key must contain only alphabetic characters.")
             return
 
         cipher_text = self.ui.txt_cipher_text.toPlainText()

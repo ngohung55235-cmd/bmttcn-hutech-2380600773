@@ -17,9 +17,17 @@ class PlayfairApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key field cannot be empty.")
             return
 
+        if not any(c.isalpha() for c in key_text):
+            QMessageBox.warning(self, "Validation Error", "Key must contain at least one alphabetic character.")
+            return
+
         plain_text = self.ui.txt_plain_text.toPlainText()
         if not plain_text:
             QMessageBox.warning(self, "Validation Error", "Plain text field cannot be empty.")
+            return
+
+        if not any(c.isalpha() for c in plain_text):
+            QMessageBox.warning(self, "Validation Error", "Plain text must contain at least one alphabetic character.")
             return
 
         url = "http://127.0.0.1:5000/api/playfair/encrypt"
@@ -49,9 +57,17 @@ class PlayfairApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key field cannot be empty.")
             return
 
+        if not any(c.isalpha() for c in key_text):
+            QMessageBox.warning(self, "Validation Error", "Key must contain at least one alphabetic character.")
+            return
+
         cipher_text = self.ui.txt_cipher_text.toPlainText()
         if not cipher_text:
             QMessageBox.warning(self, "Validation Error", "CipherText field cannot be empty.")
+            return
+
+        if not any(c.isalpha() for c in cipher_text):
+            QMessageBox.warning(self, "Validation Error", "Cipher text must contain at least one alphabetic character.")
             return
 
         url = "http://127.0.0.1:5000/api/playfair/decrypt"

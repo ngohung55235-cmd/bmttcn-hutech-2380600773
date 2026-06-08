@@ -23,9 +23,21 @@ class RailFenceApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key must be an integer.")
             return
 
+        if key < 2:
+            QMessageBox.warning(self, "Validation Error", "Key must be at least 2.")
+            return
+
         plain_text = self.ui.txt_plain_text.toPlainText()
         if not plain_text:
             QMessageBox.warning(self, "Validation Error", "Plain text field cannot be empty.")
+            return
+
+        if len(plain_text) < 2:
+            QMessageBox.warning(self, "Validation Error", "Plain text length must be at least 2.")
+            return
+
+        if key >= len(plain_text):
+            QMessageBox.warning(self, "Validation Error", f"Key must be less than the plain text length (currently {len(plain_text)}).")
             return
 
         url = "http://127.0.0.1:5000/api/railfence/encrypt"
@@ -61,9 +73,21 @@ class RailFenceApp(QMainWindow):
             QMessageBox.warning(self, "Validation Error", "Key must be an integer.")
             return
 
+        if key < 2:
+            QMessageBox.warning(self, "Validation Error", "Key must be at least 2.")
+            return
+
         cipher_text = self.ui.txt_cipher_text.toPlainText()
         if not cipher_text:
             QMessageBox.warning(self, "Validation Error", "CipherText field cannot be empty.")
+            return
+
+        if len(cipher_text) < 2:
+            QMessageBox.warning(self, "Validation Error", "Cipher text length must be at least 2.")
+            return
+
+        if key >= len(cipher_text):
+            QMessageBox.warning(self, "Validation Error", f"Key must be less than the cipher text length (currently {len(cipher_text)}).")
             return
 
         url = "http://127.0.0.1:5000/api/railfence/decrypt"
